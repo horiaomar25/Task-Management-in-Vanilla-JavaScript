@@ -19,11 +19,34 @@ async function resetDatabase() {
         task_description TEXT,
         task_type TEXT,
     
-    )`)
+    )`);
 
-    //create Daily Tasks with task_id as forgien key from the Tasks table.
+    //create Daily Tasks with task_id as forgein key from the Tasks table.
+    //Consider creating a date created and date due with calendar.
+    await pool.query(`
+    CREATE TABLE Daily Tasks (
+        daily_task_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+        task_id INT REFERENCES Tasks(task_id)
+
+    )`);
+
 
 
     //create Weekly Tasks with task_id as foriegn key from Tasks table.
+    await pool.query(`
+    CREATE TABLE Weekly Tasks (
+        weekly_task_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+        task_id INT REFERENCES Tasks(task_id)
+        
+    )`);
+
+    //create completed task
+    await pool.query(`
+    CREATE TABLE Weekly Completed Tasks (
+        completed_task_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+        task_id INT REFERENCES Tasks(task_id)
+        
+    )`);
+
     }
 }
