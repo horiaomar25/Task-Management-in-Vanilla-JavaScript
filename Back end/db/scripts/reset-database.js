@@ -17,14 +17,15 @@ async function resetDatabase() {
         task_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
         task_name VARCHAR(255) NOT NULL,
         task_description TEXT,
-        task_type TEXT,
+        task_type VAR (50) TEXT,
+        completed BOOLEAN
     
     )`);
 
     //create Daily Tasks with task_id as forgein key from the Tasks table.
     //Consider creating a date created and date due with calendar.
     await pool.query(`
-    CREATE TABLE Daily Tasks (
+    CREATE TABLE DailyTasks (
         daily_task_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
         task_id INT REFERENCES Tasks(task_id)
 
