@@ -144,9 +144,11 @@ input[type="checkbox"] + label {
   display: inline-block;
 }
 
-#task-type {
+#select-type {
   margin-bottom: 10px;
-  width: fit-content;
+  width: 440px;
+  height: 40px;
+  border-radius: 10px;
 }
 
 /*Styling columns with flex*/
