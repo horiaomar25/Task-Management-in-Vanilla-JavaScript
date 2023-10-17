@@ -52,7 +52,7 @@ a:hover {
   border-radius: 8px;
 }
 
-#modal {
+#pop-up {
   /*position allows the popup to follow that user when they scroll*/
   position: fixed;
   /*top and left will center the top left corner of our screen*/
@@ -69,6 +69,14 @@ a:hover {
   max-width: 80%;
   box-shadow: 0 2px 4px 0;
   display: none;
+}
+
+.select-type, input, textarea{
+   width: 500px;
+   max-width: 85%;
+   height: 30px;
+   border-radius: 8px;
+
 }
 
 .add-task-header {
@@ -100,7 +108,7 @@ a:hover {
   margin: 15px 20px 0 0;
 }
 
-label {
+label  {
   display: block;
   margin-top: 1em;
 }
@@ -109,9 +117,11 @@ label {
   margin-bottom: 2px;
 }
 
-.checks label {
+
+
+ .checks label {
   margin-top: 0;
-}
+} 
 
 input {
   padding: 0.5em;
@@ -154,4 +164,11 @@ input[type="checkbox"] + label {
   border-radius: 5px;
   padding: 1em;
   height: 200px;
+}
+
+.task-card{
+  margin-top: 10px;
+  padding: 20px;
+  border: solid black 2px;
+  max-width: 270px;
 }

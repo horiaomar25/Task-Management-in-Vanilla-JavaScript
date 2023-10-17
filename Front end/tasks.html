@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <meta name="viewport" content="width=initial-scale=1.0" />
     <link href="tasks.css" rel="stylesheet" />
 
     <title>Tasks</title>
@@ -48,7 +48,7 @@
     </button>
 
     <!--Popup Task form to create task. Creating a Modal--><!--Creating a modal to popup my task cards in full detail-->
-    <div id="modal">
+    <div id="pop-up">
       <div class="add-task-header">
         <h1>Add Task</h1>
         <button id="close-button">&times;</button>
@@ -67,9 +67,9 @@
         <!--Select a Daily or Weekly Task-->
         <div id="task-type">
           <label for="task-type"> Task Type:</label>
-          <select>
-            <option>Daily</option>
-            <option>Weekly</option>
+          <select id = select-type>
+            <option id="daily">Daily</option>
+            <option id="weekly">Weekly</option>
           </select>
         </div>
 
@@ -78,16 +78,26 @@
           <label for="completed">Completed</label>
         </div>
         
-        <button type="submit" id="add-button">Add Task</button>
+        <button type="submit" id="add-button" >Add Task</button>
       </form>
     </div>
     
 
     <!--3 Columns: Weekly, Daily and Completed-->
 <div class = "task-container">
-  <div class="daily">Daily Tasks</div>
-  <div class = "weekly">Weekly Tasks</div>
-  <div class="completed">Completed Tasks</div>
+
+
+  <div class="Daily-task">
+    Daily Tasks
+
+  </div>
+  
+
+  <div class = "Weekly-task">
+    Weekly Tasks
+  </div>
+
+  <div class="completed-task">Completed Tasks</div>
   
 </div>
 
