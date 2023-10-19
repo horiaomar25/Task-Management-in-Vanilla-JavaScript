@@ -1,7 +1,3 @@
-// const addButton = document.querySelector('create_task').addEventListener('click', function(){
-//     const taskForm = document.getElementById('modal')
-//      return document.body.getElementById.display(taskForm)
-// })
 
 const addButton = document.querySelector("#create_task"); // Use '#' to select by ID
 const taskForm = document.getElementById("pop-up");
@@ -17,11 +13,9 @@ closeButton.addEventListener("click", function () {
   taskForm.style.display = "none";
 });
 
-console.log("Hello")
 
-//Plan
-//Add Task button to send form data to the server.
-//Return that data to the front end as a task card.
+
+
 
 const submittingTask = document.getElementById('add-button').addEventListener("click", function (event) {
  
@@ -60,3 +54,9 @@ const submittingTask = document.getElementById('add-button').addEventListener("c
     // document.getElementById("completed").checked = false;
   }
 });
+
+
+//Plan
+//Need to create my backend 
+//Add Task button to send form data to the server.
+//Return that data to the front end as a task card.
