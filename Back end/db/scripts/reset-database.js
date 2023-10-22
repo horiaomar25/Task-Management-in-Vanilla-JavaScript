@@ -5,12 +5,9 @@ async function resetDatabase() {
         //Drop existing tables if they exists
     await pool.query(`
     DROP TABLE IF EXISTS tasks CASCADE;
-    DROP TABLE IF EXISTS daily_tasks CASCADE;
-    DROP TABLE IF EXISTS weekly_tasks CASCADE;
-    DROP TABLE IF EXISTS completed_tasks CASCADE;
-    `
-    );
+    `);
 
+    // GENERATED means that the ID is generated and you don't need to set it when inserting a record into the DB
     //create Tasks table 
     await pool.query(`
     CREATE TABLE tasks (
@@ -18,38 +15,9 @@ async function resetDatabase() {
         task_name VARCHAR(255) NOT NULL,
         task_description TEXT,
         task_type  TEXT,
-        completed BOOLEAN
-    
-    )`);
-
-    //create Daily Tasks with task_id as forgein key from the Tasks table.
-    //Consider creating a date created and date due with calendar.
-    await pool.query(`
-    CREATE TABLE daily_tasks (
-        id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-        task_id INT REFERENCES Tasks(id)
-    )`); 
-
-
-
-    //create Weekly Tasks with task_id as foriegn key from Tasks table.
-    await pool.query(`
-    CREATE TABLE weekly_tasks (
-        id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-        task_id INT REFERENCES Tasks(id)
-        
-    )`);
-
-    //create completed task
-    await pool.query(`
-    CREATE TABLE completed_tasks (
-        id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-        task_id INT REFERENCES Tasks(id)
-        
-    )`);
+        completed BOOLEAN)`);
 
     console.log("Database reset successful")
-
 
 
     } catch (error) {

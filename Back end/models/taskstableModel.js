@@ -29,14 +29,14 @@ export async function getTaskById(id) {
 export async function createTask(tasks){
     // Define the SQL query for inserting a new task into the tasks table.
     const queryNewTask = `
-    INSERT INTO Tasks (task_id, task_name, task_description, task_type)
-    VALUES ($1, $2, $3, &4)
+    INSERT INTO Tasks (task_name, task_description, task_type)
+    VALUES ($2, $3, &4)
     RETURNING *
     `;
 
     // Use the pool object to send the query to the database
     const newTask = await pool.query(queryNewTask, [
-        tasks.task_id,
+        tasks.id,
         tasks.task.name,
         tasks.task_description,
         tasks.task_type
