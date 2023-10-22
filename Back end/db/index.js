@@ -2,7 +2,7 @@
 import pg from "pg"
 
 //Retrieve the database connection string from enviroment variables
-const connectionString = proccess.env.DB_CONNECTION_STRING;
+const connectionString = process.env.DB_CONNECTION_STRING;
 
 //Check if the connection string is not defined, and if so, throw an error
 if(!connectionString) {
@@ -15,5 +15,5 @@ if(!connectionString) {
 
 export const pool = new pg.Pool({
     //Pass the connection string to the pool, so it knows how to connect to your database
-    connectionString 
+    connectionString,
 })
