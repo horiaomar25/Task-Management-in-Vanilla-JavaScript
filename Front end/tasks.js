@@ -27,8 +27,9 @@ const submittingTask = document.getElementById('add-button').addEventListener("c
   const taskTitle = document.getElementById('task-name').value;
   const taskDescription = document.getElementById('task-description').value;
   const taskType = document.getElementById('select-type').value;
-  // const completed = document.getElementById("completed").checked;
 
+  // const completed = document.getElementById("completed").checked;
+  
   //This will take the task type selected stored in taskType variable above 
   //and search through the HTML file to find a class name by either 'Weekly-task'/'Daily-task'.
   //NOTE: Always make sure that the option in the form is the same name as it is case sensitive. 

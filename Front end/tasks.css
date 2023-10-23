@@ -169,8 +169,9 @@ input[type="checkbox"] + label {
 }
 
 .task-card{
-  margin-top: 10px;
+  margin-top: 1rem;
   padding: 20px;
-  border: solid black 2px;
+  border: solid black 1px;
   max-width: 270px;
+  
 }

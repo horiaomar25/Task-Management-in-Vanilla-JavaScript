@@ -14,7 +14,7 @@ async function resetDatabase() {
         id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
         task_name VARCHAR(255) NOT NULL,
         task_description TEXT,
-        task_type  TEXT,
+        task_frequency task_type,
         completed BOOLEAN)`);
 
     console.log("Database reset successful")
