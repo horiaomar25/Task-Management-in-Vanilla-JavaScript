@@ -1,5 +1,19 @@
 import { pool } from "../db/index.js";
 
+export async function getTasks() {
+    // Query the database and return all authors
+  
+    // Define the SQL query to fetch all authors from the 'authors' table
+    const queryText = "SELECT * FROM tasks";
+  
+    // Use the pool object to send the query to the database
+    const result = await pool.query(queryText);
+  
+    // The rows property of the result object contains the retrieved records
+    return result.rows;
+  }
+  
+
 // 1. Create Task with Add Task
 
 //Query the database to create a task and return the new task

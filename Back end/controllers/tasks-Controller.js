@@ -1,5 +1,10 @@
 import * as tasksModel from "../models/tasksModel"
 
+export async function getTasks(req, res) {
+    const tasks = await tasksModel.getTasks();
+    res.status(200).json({ status: "success", data: authors });
+  }
+
 export async function createTask(req, res) {
     const data = req.body;
     const task = await tasksModel.createTask(data);
@@ -21,6 +26,19 @@ export async function getDailyTaskById(req, res) {
     res.status(200).json({ status: "success", data: task})
 }
 
+export async function getWeeklyTaskById(req, res) {
+    const id = req.params.id;
+    const task = await dailyTaskModel.getWeeklyTaskById(id);
+
+    if(!task) {
+        return res
+        .status(404)
+        .json({ status: "fail", data: { msg: "Task not found" } });
+
+    }
+    res.status(200).json({ status: "success", data: task})
+}
+
 export async function updateTaskById(req, res) {
     const id = req.params.id;
     const data = req.body;
@@ -31,7 +49,7 @@ export async function updateTaskById(req, res) {
         .status(404)
         .json({ status: "fail", data: { msg: "Author not found" } });
     }
-    
+
     res.status(200).json({ status: "success", data: author });
   }
 
