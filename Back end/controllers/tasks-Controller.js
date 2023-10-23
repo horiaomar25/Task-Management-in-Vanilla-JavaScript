@@ -31,6 +31,7 @@ export async function updateTaskById(req, res) {
         .status(404)
         .json({ status: "fail", data: { msg: "Author not found" } });
     }
+    
     res.status(200).json({ status: "success", data: author });
   }
 

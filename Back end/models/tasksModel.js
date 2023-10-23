@@ -68,7 +68,8 @@ export async function updateTaskById (id, updates){
     const updateTask = await pool.query(queryTask, [
         updates.task_name,
         updates.task_description,
-        updates.task_type
+        updates.task_type,
+        id
     ]);
 
     //The rows property of the result object contains the updated record
@@ -81,7 +82,7 @@ export async function updateTaskById (id, updates){
   export async function deleteTaskById (id) {
     //Query the database to delete a book and return the deleted task.
     
-    const queryDailyTask = `
+    const queryTask = `
       DELETE FROM tasks
       WHERE id = $1
       RETURNING *;
