@@ -54,7 +54,7 @@ export async function getWeeklyTaskById(id) {
   }
 
   // UPDATE TASK
-  
+
   //Define the SQL query for updating the specified task in the Tasks table
 export async function updateTaskById (id, updates){
     const queryTask = `
@@ -78,7 +78,7 @@ export async function updateTaskById (id, updates){
 
 // DELETE TASK
 
-  export async function deleteById (id) {
+  export async function deleteTaskById (id) {
     //Query the database to delete a book and return the deleted task.
     
     const queryDailyTask = `
