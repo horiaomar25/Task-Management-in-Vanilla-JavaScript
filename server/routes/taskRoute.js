@@ -4,14 +4,14 @@ import * as taskController from "../controllers/tasks-Controller";
 
 export const tasksRoutes = express.Router();
 
-tasksRoutes.get("/", taskController.getTasks);
+tasksRoutes.get("/tasks", taskController.getTasks);
 
-tasksRoutes.get("/:id", taskController.getDailyTaskById);
+tasksRoutes.get("tasks/:id", taskController.getDailyTaskById);
 
-tasksRoutes.get("/:id", taskController.getWeeklyTaskById);
+tasksRoutes.get("tasks/:id", taskController.getWeeklyTaskById);
 
-tasksRoutes.post("/", taskController.createTask);
+tasksRoutes.post("tasks/", taskController.createTask);
 
-tasksRoutes.patch("/:id", taskController.updateTaskById);
+tasksRoutes.patch("tasks/:id", taskController.updateTaskById);
 
-tasksRoutes.delete("/:id", taskController.deleteTaskById);
+tasksRoutes.delete("tasks/:id", taskController.deleteTaskById);

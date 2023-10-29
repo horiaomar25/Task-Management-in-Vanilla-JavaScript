@@ -28,7 +28,7 @@ export async function createTask(tasks){
     // Use the pool object to send the query to the database
     const newTask = await pool.query(queryNewTask, [
         tasks.id,
-        tasks.task.name,
+        tasks.task_name,
         tasks.task_description,
         tasks.task_type
     ]);
@@ -42,7 +42,7 @@ export async function createTask(tasks){
 //Query the database and return the task with a matching id or null
 export async function getDailyTaskById(id) {
   //Define the SQL query to fetch the task with the specified id from the task table.
-  const dailyTask = "SELECT * FROM tasks id = $1 AND task_type = 'Daily ";
+  const dailyTask = "SELECT * FROM tasks id = $1 AND task_type = 'Daily"
 
   //Use the pool object to send the query to the database
   //passing the id as a parameter to prevent SQL injection
