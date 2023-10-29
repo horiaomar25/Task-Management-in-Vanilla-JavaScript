@@ -2,7 +2,7 @@ import * as tasksModel from "../models/tasksModel"
 
 export async function getTasks(req, res) {
     const tasks = await tasksModel.getTasks();
-    res.status(200).json({ status: "success", data: authors });
+    res.status(200).json({ status: "success", data: task });
   }
 
 export async function createTask(req, res) {
@@ -10,6 +10,8 @@ export async function createTask(req, res) {
     const task = await tasksModel.createTask(data);
     res.status(201).json({ status: "success", data: task })
 }
+
+
 
 
 
