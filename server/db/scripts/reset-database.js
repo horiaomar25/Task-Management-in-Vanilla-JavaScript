@@ -11,10 +11,10 @@ async function resetDatabase() {
     //create Tasks table 
     await pool.query(`
     CREATE TABLE tasks (
-        id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-        task_name VARCHAR(255) NOT NULL,
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        task_name TEXT,
         task_description TEXT,
-        task_frequency task_type,
+        task_type TEXT,
         completed BOOLEAN)`);
 
     console.log("Database reset successful")

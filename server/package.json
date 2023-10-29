@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-   "dev": "nodemon -r dotenv/config server.js",
-   "reset-database": "node -r dotenv/config db/scripts/reset-database"
+    "dev": "nodemon -r dotenv/config server.js",
+    "reset-database": "node -r dotenv/config db/scripts/reset-database"
   },
   "keywords": [],
   "author": "",

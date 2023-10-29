@@ -1,8 +1,8 @@
-import * as tasksModel from "../models/tasksModel"
+import * as tasksModel from "../models/tasksModel.js";
 
 export async function getTasks(req, res) {
     const tasks = await tasksModel.getTasks();
-    res.status(200).json({ status: "success", data: task });
+    res.status(200).json({ status: "success", data: tasks });
   }
 
 export async function createTask(req, res) {
@@ -44,7 +44,7 @@ export async function getWeeklyTaskById(req, res) {
 export async function updateTaskById(req, res) {
     const id = req.params.id;
     const data = req.body;
-    const author = await tasksModel.updateTaskById(id, data);
+    const task = await tasksModel.updateTaskById(id, data);
     // Assume 404 status if the author is not found
     if (!author) {
       return res
@@ -52,20 +52,20 @@ export async function updateTaskById(req, res) {
         .json({ status: "fail", data: { msg: "Author not found" } });
     }
 
-    res.status(200).json({ status: "success", data: author });
+    res.status(200).json({ status: "success", data: task });
   }
 
 
   export async function deleteTaskById(req, res) {
     const id = req.params.id;
-    const author = await tasksModel.deleteTaskById(id);
+    const task = await tasksModel.deleteTaskById(id);
     // Assume 404 status if the author is not found
     if (!author) {
       return res
         .status(404)
         .json({ status: "fail", data: { msg: "Author not found" } });
     }
-    res.status(200).json({ status: "success", data: author });
+    res.status(200).json({ status: "success", data: task });
   }
 
 

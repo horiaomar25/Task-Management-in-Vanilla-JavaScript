@@ -1,4 +1,5 @@
 import { pool } from "../db/index.js";
+import { v4 as uuidv4 } from 'uuid';
 
 export async function getTasks() {
     // Query the database and return all authors
@@ -21,13 +22,12 @@ export async function createTask(tasks){
     // Define the SQL query for inserting a new task into the tasks table.
     const queryNewTask = `
     INSERT INTO tasks (task_name, task_description, task_type)
-    VALUES ($2, $3, &4)
+    VALUES ($1, $2, $3)
     RETURNING *
     `;
 
     // Use the pool object to send the query to the database
     const newTask = await pool.query(queryNewTask, [
-        tasks.id,
         tasks.task_name,
         tasks.task_description,
         tasks.task_type

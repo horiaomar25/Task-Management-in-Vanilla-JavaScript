@@ -1,4 +1,6 @@
-import { app } from "./app.js";
+import { app }  from "../server/app.js"
+
+
 
 const PORT = process.env.PORT;
 
