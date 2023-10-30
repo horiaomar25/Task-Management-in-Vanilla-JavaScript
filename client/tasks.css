@@ -173,8 +173,82 @@ input[type="checkbox"] + label {
   padding: 20px;
   border: solid black 1px;
   max-width: 270px;
-  
   border-radius: 8px;
   
 }
 
+.task-expand{
+    display: hidden;
+    /*position allows the popup to follow that user when they scroll*/
+  position: fixed;
+  /*top and left will center the top left corner of our screen*/
+  top: 50%;
+  left: 55%;
+  padding: 3em 2em;
+  border: 1px solid black;
+  border-radius: 10px;
+  /*will center the popup*/
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: white;
+  width: 500px;
+  max-width: 80%;
+  box-shadow: 0 2px 4px 0;
+  height: 500px;
+
+}
+
+.task-header {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.task-header #close-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.task-info{
+ 
+  height: 300px;
+  
+}
+
+.task-expand {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-info {
+  margin-bottom: 10px;
+}
+
+.btn-container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+
+
+
+
+#edit, #delete, #complete {
+  margin-left: 10px;
+  background-color: #8b008b;
+  width: 150px;
+  padding: 10px;
+  border: black solid 1px;
+  border-radius: 8px;
+  font-family: "Montserrat";
+  color: white;
+  float: right;
+  margin: 15px 20px 0 0;
+}

@@ -1,6 +1,7 @@
 const addButton = document.querySelector("#create_task"); // Use '#' to select by ID
 const taskForm = document.getElementById("pop-up");
 const closeButton = document.getElementById("close-button");
+const submitButton = document.getElementById('add-button');
 
 // Click on create task and open the form.
 addButton.addEventListener("click", function () {
@@ -12,8 +13,12 @@ closeButton.addEventListener("click", function () {
   taskForm.style.display = "none";
 });
 
+submitButton.addEventListener('click', function () {
+  taskForm.style.display = "none";
+})
+
 //fetch data/ send data
-document.getElementById('add-button').addEventListener('click', function(e){
+const formToServer = document.getElementById('add-button').addEventListener('click', function(e){
   e.preventDefault();
   const formData= new FormData(document.getElementById('taskForm'));
   const task_name = formData.get('task_name');
@@ -110,7 +115,14 @@ const taskData = fetch('http://localhost:3001/tasks/')
   console.error(error);
 });
 
-// Function to create a task card element
+// close the task information pop up.
+const closeTaskInformation = document.querySelector('.close-task');
+const taskInformation = document.querySelector('.task-expand');
+
+closeTaskInformation.addEventListener('click', function (){
+  taskInformation.style.display='none';
+})
+
 
 
 
