@@ -37,6 +37,7 @@ const task_type = formData.get('task_type');
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
+  
   })
   .then(response => {
     if (response.ok) {
@@ -50,7 +51,7 @@ const task_type = formData.get('task_type');
   .then(data => {
     // Handle the response from the server, e.g., show a success message or update the UI
     console.log(data.message); // Data saved successfully
-    console.log(reponse);
+    
   })
   .catch(error => {
     console.error(error);
@@ -61,45 +62,58 @@ const task_type = formData.get('task_type');
 })
 
 // Fetch Data from the database/server
+function createTaskCard(task) {
+  const taskElement= document.createElement('div');
+  taskElement.className ="card";
+  taskElement.innerHTML = `
+  <h5>${task.task_name}</h5>
+  <p>${task.task_description}</p>
+  
+  `;
+  
+   return taskElement;
+}
 
-fetch('http://localhost:3001/tasks/7a9b841b-116a-4300-82ff-01d890de6191')  
+function appendTaskToDOM(task) {
+  // get the task type
+   const taskType = task.task_type;
+   // Create new task card element
+  const taskElement = createTaskCard(task);
+
+if(taskType === 'Daily'){
+  const dailyTask = document.querySelector('.Daily-task');
+    dailyTask.appendChild(taskElement);
+   } else if (taskType === 'Weekly') {
+    const weeklyTask = document.querySelector('.Weekly-task');
+    weeklyTask.appendChild(taskElement);
+   }
+
+ 
+}
+
+const taskData = fetch('http://localhost:3001/tasks/')  
 .then((response) => {
   if (response.ok) {
       return response.json(); // Parse the JSON response
   } else {
       throw new Error('Failed to fetch data from the server');
   }
+  
 })
 .then((data) => {
-  displayTasks(data);
-
+  data.data.forEach((task) => {
+    appendTaskToDOM(task);
+  })
+  
 })
 .catch((error) => {
   console.error(error);
 });
 
-function displayTasks(data) {
-  //Element to display tasks
-  const weeklyTask = document.querySelector('.Weekly-task');
-  const dailyTask = document.querySelector('.Daily-task')
-  data.forEach((task) =>{
-     const taskElement = document.createElement('div');
-     taskElement.className = "task-card"
-     taskElement.innerHTML = `
-     <h3>${task.task_name}</h3>
-     <p>${task.task_description}</p>
-     
-     `;
+// Function to create a task card element
 
-     if(task.type === 'Daily'){
-      dailyTask.appendChild(taskElement);
-     } else if (task.type === 'Weekly') {
-      weeklyTask.appendChild(taskElement);
-     }
 
-     
-  })
-}
+
 
 
 

@@ -168,11 +168,13 @@ input[type="checkbox"] + label {
   height: 200px;
 }
 
-.task-card{
+.card{
   margin-top: 1rem;
   padding: 20px;
   border: solid black 1px;
   max-width: 270px;
+  
+  border-radius: 8px;
   
 }
 
