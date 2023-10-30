@@ -16,11 +16,19 @@ closeButton.addEventListener("click", function () {
 document.getElementById('add-button').addEventListener('click', function(e){
   e.preventDefault();
   const formData= new FormData(document.getElementById('taskForm'));
-  const task_name = formData.get('task-name');
+  const task_name = formData.get('task_name');
 const task_description = formData.get('task_description');
 const task_type = formData.get('task_type');
 
-  sendDataToServer({ task_name, task_description, task_type})
+  // sendDataToServer({ task_name, task_description, task_type})
+  const data = {
+    task_name,
+    task_description,
+    task_type,
+    completed: false,
+  };
+
+  sendDataToServer(data)
   
   function sendDataToServer (data){
   fetch('http://localhost:3001/tasks/',{
@@ -52,56 +60,51 @@ const task_type = formData.get('task_type');
 
 })
 
+// Fetch Data from the database/server
+
+fetch('http://localhost:3001/tasks/7a9b841b-116a-4300-82ff-01d890de6191')  
+.then((response) => {
+  if (response.ok) {
+      return response.json(); // Parse the JSON response
+  } else {
+      throw new Error('Failed to fetch data from the server');
+  }
+})
+.then((data) => {
+  displayTasks(data);
+
+})
+.catch((error) => {
+  console.error(error);
+});
+
+function displayTasks(data) {
+  //Element to display tasks
+  const weeklyTask = document.querySelector('.Weekly-task');
+  const dailyTask = document.querySelector('.Daily-task')
+  data.forEach((task) =>{
+     const taskElement = document.createElement('div');
+     taskElement.className = "task-card"
+     taskElement.innerHTML = `
+     <h3>${task.task_name}</h3>
+     <p>${task.task_description}</p>
+     
+     `;
+
+     if(task.type === 'Daily'){
+      dailyTask.appendChild(taskElement);
+     } else if (task.type === 'Weekly') {
+      weeklyTask.appendChild(taskElement);
+     }
+
+     
+  })
+}
 
 
-
-
-
-
-
-
-
-// const submittingTask = document.getElementById('add-button').addEventListener("click", function (event) {
- 
-
-//   //This stops the form from default submission behavior and will stop error from being thrown click add task. 
-//   event.preventDefault()
-
-//   //These  variables will store the input values from the form that will used for the task card. 
-//   const taskTitle = document.getElementById('task-name').value;
-//   const taskDescription = document.getElementById('task-description').value;
-//   const taskType = document.getElementById('select-type').value;
-
-//   // const completed = document.getElementById("completed").checked;
-  
-//   //This will take the task type selected stored in taskType variable above 
-//   //and search through the HTML file to find a class name by either 'Weekly-task'/'Daily-task'.
-//   //NOTE: Always make sure that the option in the form is the same name as it is case sensitive. 
-//   const taskContainer = document.querySelector(`.${taskType}-task`);
-
-//   //The if statement will check the column it needs be added. 
-//   if (taskContainer) {
-//     //It will create a div element in that column.
-//     const taskCard = document.createElement('div');
-//     //This will give the newly created div a class name which can be used for CSS styling.
-//     taskCard.className = "task-card";
-//     //Using the information stored from the form, it will print this into the div. I also added format so it presents clearer.
-//     taskCard.innerHTML = `
-//         <h3>${taskTitle}</h3>
-//         <p>${taskDescription}</p>
-        
-//     `;
-//      //This will add the newly created task card to the task Container
-//     taskContainer.appendChild(taskCard);
-
-//     document.getElementById("task-name").value = "";
-//     document.getElementById("task-description").value = "";
-//     // document.getElementById("completed").checked = false;
-//   }
-// });
 
 
 //Plan
 //Need to create my backend 
 //Add Task button to send form data to the server.
-//Return that data to the front end as a task card.
+//Return that data to the front end as a task card
