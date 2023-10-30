@@ -16,6 +16,7 @@ app.post('http://localhost:3001/tasks/', (req, res) => {
   // Send a response back to the client
   res.json({ message: 'Data saved successfully' });
 });
+
 app.use(cors())
 
 app.use("/tasks", tasksRoutes);
