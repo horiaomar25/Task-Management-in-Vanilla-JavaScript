@@ -222,7 +222,7 @@ input[type="checkbox"] + label {
   max-width: 80%;
   box-shadow: 0 2px 4px 0;
   height: 500px;
-  display: none !important;
+  display: none;
 }
 
 .task-header {
@@ -263,7 +263,7 @@ input[type="checkbox"] + label {
 
 #edit,
 #delete,
-#complete {
+ #complete {
   margin-left: 10px;
   background-color: #8b008b;
   width: 150px;
@@ -272,11 +272,31 @@ input[type="checkbox"] + label {
   border-radius: 8px;
   font-family: "Montserrat";
   color: white;
-  float: right;
-  margin: 15px 20px 0 0;
+  float: right ;
+  margin: 15px 20px 0px 30px;
+ 
+}
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 700,
+  'GRAD' 0,
+  'opsz' 0
 }
 
 #task-name {
   padding: 18px;
   font-size: 15px;
 }
+
+.task-info{
+  margin-top: 1rem;
+  padding: 20px;
+  max-width: 270px;
+  border: 2px black solid;
+  
+
+}
+

@@ -75,7 +75,11 @@ function createTaskCard(task) {
   <p>${task.task_description}</p>
   
   `;
-
+  
+  const taskInformation = document.querySelector(".task-expand");
+ taskElement.addEventListener('click', function (){
+  taskInformation.style.display = 'block';
+ })
 
   return taskElement;
 }
@@ -95,7 +99,6 @@ function appendTaskToDOM(task) {
     weeklyTask.appendChild(taskElement);
   }
 }
-
 
 
 // This fetch request takes the data send to the database.
@@ -130,5 +133,76 @@ const taskInformation = document.querySelector(".task-expand");
 closeTaskInformation.addEventListener("click", function () {
   taskInformation.style.display = "none";
 });
+
+
+// Create an Edit and make symbol
+// Function to create an editing form with API integration
+function createEditTaskPopup(taskId) {
+  // Make an API request to fetch task details by task ID
+  fetch(`/api/tasks/${taskId}`)
+    .then((response) => response.json())
+    .then((task) => {
+      const popup = document.createElement("div");
+      popup.className = "task-popup";
+
+      // Create an editing form
+      const form = document.createElement("form");
+
+      // Populate the form with task details fetched from the API
+      const taskNameInput = document.createElement("input");
+      taskNameInput.type = "text";
+      taskNameInput.value = task.name;
+      form.appendChild(taskNameInput);
+
+      // Add more input fields for other task details (e.g., description, due date, priority)
+
+      // Save button
+      const saveButton = document.createElement("button");
+      saveButton.textContent = "Save";
+      saveButton.addEventListener("click", () => {
+        // Update the task details with user changes
+        task.name = taskNameInput.value;
+        // Update other properties here
+
+        // Send an API request to update the task
+        fetch(`/api/tasks/${taskId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(task),
+        })
+          .then((response) => {
+            if (response.ok) {
+              // Close the pop-up/modal
+              popup.remove();
+              // Update the task card with the new information on the main task list/board
+              // (You'll need to implement this part)
+            } else {
+              // Handle API request error and display an error message to the user
+            }
+          });
+      });
+      form.appendChild(saveButton);
+
+      // Cancel button
+      const cancelButton = document.createElement("button");
+      cancelButton.textContent = "Cancel";
+      cancelButton.addEventListener("click", () => {
+        // Close the pop-up/modal without saving changes
+        popup.remove();
+      });
+      form.appendChild(cancelButton);
+
+      popup.appendChild(form);
+
+      // Display the editing form
+      document.body.appendChild(popup);
+    })
+    .catch((error) => {
+      // Handle API request error and display an error message to the user
+    });
+}
+
 
 
