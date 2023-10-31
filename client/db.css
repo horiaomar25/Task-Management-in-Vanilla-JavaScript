@@ -98,5 +98,8 @@
   .task-title {
     margin-top: 25px;
     margin-bottom: 25px;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 8px;
   }
 
