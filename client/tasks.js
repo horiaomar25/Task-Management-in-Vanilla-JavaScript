@@ -123,6 +123,7 @@ closeTaskInformation.addEventListener('click', function (){
   taskInformation.style.display='none';
 })
 
+// Dashboard - List the top 3 task items in containers.
 
 
 
@@ -130,7 +131,4 @@ closeTaskInformation.addEventListener('click', function (){
 
 
 
-//Plan
-//Need to create my backend 
-//Add Task button to send form data to the server.
-//Return that data to the front end as a task card
+

@@ -3,10 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="db.css" rel="stylesheet"/>
+    
+  
     
     <title>Dashboard</title>
 </head>
 <body>
-    
+   <h1 id="dashboard-header"> Dashboard</h1>
+    <!--Sidebar Navigation-->
+    <nav class="sidebar_container">
+      <img src="./logo.png"/>
+        <ul class="nav_links">
+          <li>
+            <a href="dashboard.html"> Dashboard </a>
+          </li>
+  
+          <li>
+            <a href="tasks.html"> Tasks </a>
+          </li>
+  
+          <li>
+            <a href="#"> Calendar </a>
+          </li>
+  
+          <li>
+            <a href="#"> Resources </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!--Grid layout for Weekly and Daily Tasks-->
+      <main>
+        <section>
+          <div class="grid-container">
+          <div class="weekly-container">
+            <h1> Daily Tasks</h1> 
+            <hr/>
+            <p class="task-title"> Hello World</p>
+            <hr/>
+            <p class="task-title"> Hello World</p>
+            <hr/>
+            <p class="task-title"> Hello World</p>
+
+          </div>
+
+          <div class="daily-container">
+            <h1> Weekly Tasks</h1>
+            <hr/>
+            <p class="task-title"> Hello World</p>
+            <hr/>
+            <p class="task-title"> Hello World</p>
+            <hr/>
+            <p class="task-title"> Hello World</p>
+
+          </div>
+        </div>
+        </section>
+      </main>
+      <script src="tasks.js"></script>
 </body>
 </html>

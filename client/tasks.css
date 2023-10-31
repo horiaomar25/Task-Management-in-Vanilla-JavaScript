@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: white;
+  background-color: #f9f8ff;
   font-family: "Montserrat";
 }
 
@@ -25,14 +25,21 @@ body {
 }
 
 #create_task:hover {
-  background: gray;
+  background: black;
 }
+
+img {
+  width: 10rem;
+  margin-top: 20px;
+  margin-left: 15px;
+}
+
 
 .sidebar_container {
   margin: 0;
   padding: 0;
   width: 200px;
-  background-color: #f1f1f1;
+  background-color: #8b008b;
   position: fixed;
   height: 100%;
   overflow: auto;
@@ -40,18 +47,21 @@ body {
   left: 0;
 }
 
+.nav_links {
+  margin-top: 10px;
+}
 .sidebar_container a {
-  display: block;
-  color: black;
+  margin-top: 10px;
+  display: flex;
+  color: white;
   padding: 16px;
   text-decoration: none;
 }
 
 a:hover {
-  background: #8b008b;
+  background: black;
   border-radius: 8px;
 }
-
 #pop-up {
   /*position allows the popup to follow that user when they scroll*/
   position: fixed;
@@ -71,12 +81,13 @@ a:hover {
   display: none;
 }
 
-.select-type, input, textarea{
-   width: 500px;
-   max-width: 85%;
-   height: 30px;
-   border-radius: 8px;
-
+.select-type,
+input,
+textarea {
+  width: 500px;
+  max-width: 85%;
+  height: 30px;
+  border-radius: 8px;
 }
 
 .add-task-header {
@@ -108,7 +119,7 @@ a:hover {
   margin: 15px 20px 0 0;
 }
 
-label  {
+label {
   display: block;
   margin-top: 1em;
 }
@@ -117,11 +128,9 @@ label  {
   margin-bottom: 2px;
 }
 
-
-
- .checks label {
+.checks label {
   margin-top: 0;
-} 
+}
 
 input {
   padding: 0.5em;
@@ -168,18 +177,20 @@ input[type="checkbox"] + label {
   height: 200px;
 }
 
-.card{
+.card {
   margin-top: 1rem;
   padding: 20px;
-  border: solid black 1px;
   max-width: 270px;
   border-radius: 8px;
-  
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid #e6e4f0;
+  background: #fff;
 }
 
-.task-expand{
-    display: hidden;
-    /*position allows the popup to follow that user when they scroll*/
+.task-expand {
+  display: hidden;
+  /*position allows the popup to follow that user when they scroll*/
   position: fixed;
   /*top and left will center the top left corner of our screen*/
   top: 50%;
@@ -195,7 +206,6 @@ input[type="checkbox"] + label {
   max-width: 80%;
   box-shadow: 0 2px 4px 0;
   height: 500px;
-
 }
 
 .task-header {
@@ -215,10 +225,8 @@ input[type="checkbox"] + label {
   font-weight: bold;
 }
 
-.task-info{
- 
+.task-info {
   height: 300px;
-  
 }
 
 .task-expand {
@@ -236,11 +244,9 @@ input[type="checkbox"] + label {
   flex-direction: row;
 }
 
-
-
-
-
-#edit, #delete, #complete {
+#edit,
+#delete,
+#complete {
   margin-left: 10px;
   background-color: #8b008b;
   width: 150px;
@@ -251,4 +257,9 @@ input[type="checkbox"] + label {
   color: white;
   float: right;
   margin: 15px 20px 0 0;
+}
+
+#task-name{
+  padding: 18px;
+  font-size: 15px;
 }
