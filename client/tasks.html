@@ -10,7 +10,7 @@
   <body>
     <!--Sidebar Navigation-->
     <nav class="sidebar_container">
-      <img src="./logo.png"/>
+      <img src="./logo.png" />
       <ul class="nav_links">
         <li>
           <a href="dashboard.html"> Dashboard </a>
@@ -58,8 +58,13 @@
       <form id="taskForm" method="post">
         <!--Task name with input-->
         <label for="task_name"> Task Name:</label>
-        
-        <input  type="text"  aria-label=".form-control-lg example"  name="task_name" id="task-name">
+
+        <input
+          type="text"
+          aria-label=".form-control-lg example"
+          name="task_name"
+          id="task-name"
+        />
         <!--Task description with text area.-->
         <div>
           <label for="task_description">Task Description</label>
@@ -68,70 +73,52 @@
         <!--Select a Daily or Weekly Task-->
         <div id="task-type">
           <label for="task-type"> Task Type:</label>
-          <select id = select-type name="task_type">
-            <option  value='Daily' id="daily">Daily</option>
-            <option value='Weekly' id="weekly">Weekly</option>
+          <select id="select-type" name="task_type">
+            <option value="Daily" id="daily">Daily</option>
+            <option value="Weekly" id="weekly">Weekly</option>
           </select>
         </div>
 
-        <!-- <div class="checks">
-          <input type="checkbox" id="completed" />
-          <label for="completed">Completed</label>
-        </div> -->
-        
-        <button type="submit" id="add-button" >Add Task</button>
+        <button type="submit" id="add-button">Add Task</button>
       </form>
     </div>
-    
 
     <!--3 Columns: Weekly, Daily and Completed-->
-<div class = "task-container">
+    <div class="task-container">
+      <div class="Daily-task">
+        Daily Tasks
+        <hr />
+      </div>
 
+      <div class="Weekly-task">
+        Weekly Tasks
+        <hr />
+        <div class=".card"></div>
+      </div>
 
-  <div class="Daily-task">
-    Daily Tasks
-    <hr/>
+      <div class="completed-task">
+        Completed Tasks
+        <hr />
+      </div>
+    </div>
 
-  </div>
-  
+    <!--Modal to expand task cards with update/delete/complete function-->
+    <div class="task-expand">
+      <div class="task-header">
+        <h2>Task</h2>
+        <button id="close-button" class="close-task">&times;</button>
+      </div>
+      <div class="task-info">
+        <h1>Hello World</h1>
+      </div>
+      <hr />
+      <div class="btn-container">
+        <button id="complete">Complete</button>
 
-  <div class = "Weekly-task">
-    Weekly Tasks
-    <hr/>
-    
-  </div>
-
-  <div class="completed-task">
-    Completed Tasks
-    <hr/>
-
-  </div>
-  
-</div>
-
-<!--Modal to expand task cards with update/delete/complete function-->
-<div class="task-expand">
-  <div class="task-header">
-  <h2>Task</h2>
-  <button id="close-button" class="close-task">&times;</button>
-</div>
-   <div class="task-info">
-    <h1>Hello World</h1>
-     
-    
-    
-  </div>
-  <hr/>
-  <div class="btn-container">
-  <button id="complete">Complete</button>
- 
-  
- 
-<button id="edit">Edit</button>
-  <button id="delete">Delete</button>
-</div>
-</div>
-
+        <button id="edit">Edit</button>
+        <button id="delete">Delete</button>
+      </div>
+    </div>
 
     <script src="tasks.js"></script>
   </body>

@@ -34,7 +34,6 @@ img {
   margin-left: 15px;
 }
 
-
 .sidebar_container {
   margin: 0;
   padding: 0;
@@ -45,6 +44,7 @@ img {
   overflow: auto;
   top: 0;
   left: 0;
+  
 }
 
 .nav_links {
@@ -60,8 +60,12 @@ img {
 
 a:hover {
   background: black;
-  border-radius: 8px;
+  border-radius: 20px;
+  width: 150px;
+  margin-left: 5px;
+  box-shadow: 0 2px 2px 0;
 }
+
 #pop-up {
   /*position allows the popup to follow that user when they scroll*/
   position: fixed;
@@ -186,10 +190,22 @@ input[type="checkbox"] + label {
   border-radius: 10px;
   border: 1px solid #e6e4f0;
   background: #fff;
+  line-height: 35px;
+  box-shadow: 0 2px 2px 0;
+  
 }
 
+.card:hover{
+    
+  border-radius: 20px;
+ 
+  margin-left: 5px;
+  background-color: #c298bb;
+  
+}
+
+
 .task-expand {
-  display: hidden;
   /*position allows the popup to follow that user when they scroll*/
   position: fixed;
   /*top and left will center the top left corner of our screen*/
@@ -206,6 +222,7 @@ input[type="checkbox"] + label {
   max-width: 80%;
   box-shadow: 0 2px 4px 0;
   height: 500px;
+  display: none !important;
 }
 
 .task-header {
@@ -259,7 +276,7 @@ input[type="checkbox"] + label {
   margin: 15px 20px 0 0;
 }
 
-#task-name{
+#task-name {
   padding: 18px;
   font-size: 15px;
 }

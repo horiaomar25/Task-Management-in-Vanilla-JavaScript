@@ -48,7 +48,10 @@
   
   a:hover {
     background: black;
-    border-radius: 8px;
+    border-radius: 20px;
+    width: 150px;
+    margin-left: 5px;
+    box-shadow: 0 2px 2px 0;
   }
 
   .grid-container{
@@ -101,5 +104,18 @@
     border: 1px solid black;
     padding: 10px;
     border-radius: 8px;
+    box-shadow: 0 2px 2px 0;
   }
+
+  .task-title:hover{
+    
+    border-radius: 20px;
+   
+    margin-left: 5px;
+    background-color: #c298bb;
+  }
+
+.task{
+  display: none;
+}
 
