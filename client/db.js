@@ -39,7 +39,10 @@ const taskData = fetch("http://localhost:3001/tasks/")
       throw new Error("Failed to fetch data from the server");
     }
   })
-  .then((data) => {
+  .then((data) => { 
+    const weeklyTaskData = data.data.filter(task => task.type === 'weekly')
+    const last3WeeklyTasks= 
+   
     data.data.forEach((task) => {
       appendToDashBoard(task);
       console.log(task)

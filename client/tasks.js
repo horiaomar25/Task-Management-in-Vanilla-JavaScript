@@ -28,14 +28,14 @@ const formToServer = document
     const task_description = formData.get("task_description");
     const task_type = formData.get("task_type");
 
-    // Create a object using the value/data from the different input fields in the form. 
+    // Create a object using the value/data from the different input fields in the form.
     const data = {
       task_name,
       task_description,
       task_type,
       completed: false,
     };
- // Calls the function written below and give it the data object containing the inputs sent to the form.
+    // Calls the function written below and give it the data object containing the inputs sent to the form.
     sendDataToServer(data);
 
     function sendDataToServer(data) {
@@ -75,22 +75,53 @@ function createTaskCard(task) {
   <p>${task.task_description}</p>
   
   `;
-  
-  const taskInformation = document.querySelector(".task-expand");
- taskElement.addEventListener('click', function (){
-  taskInformation.style.display = 'block';
- })
+
+  const taskExpand = document.querySelector(".task-expand");
+  const taskInformation = document.getElementById('task-info')
+
+  taskElement.addEventListener("click", function (event) {
+    taskExpand.style.display = "block";
+    
+    // Clone the task element to create a copy
+    const taskCopy = taskElement.cloneNode(true);
+    
+    // Clear the taskInformation element before appending the copy
+    taskInformation.innerHTML = "";
+    
+    // Append the cloned task element to the taskInformation element
+    taskInformation.appendChild(taskCopy);
+  });
 
   return taskElement;
+}
+
+function createTaskCard2(task) {
+  const t = createTaskCard(task);
+  
+// trying to append the task to task expand.
+  const taskExpand = document.querySelector(".task-expand");
+  c
+
+  taskExpand.addEventListener("click", function () {
+    taskExpand.style.display = "block";
+    if(t === task.task_name){
+    taskExpand.appendChild(task.task_name);
+    }
+  });
+
+  console.log(taskElement)
+  return taskExpand;
 }
 
 // Adding the tasks to the Task page in the right columns. 'task' is the data Object holding
 function appendTaskToDOM(task) {
   // get the task type
   const taskType = task.task_type;
+
   // Create new task card element
   const taskElement = createTaskCard(task);
 
+  // Matches the correct column and will append the task card to the right column
   if (taskType === "Daily") {
     const dailyTask = document.querySelector(".Daily-task");
     dailyTask.appendChild(taskElement);
@@ -98,12 +129,17 @@ function appendTaskToDOM(task) {
     const weeklyTask = document.querySelector(".Weekly-task");
     weeklyTask.appendChild(taskElement);
   }
+
+  
 }
 
+//Plan
+// Need to append task to task expand 
+// 
 
 // This fetch request takes the data send to the database.
 // forEach loops through the data object and appends each task(array) to a task card with
-// the function appendTaskToDOM up above. 
+// the function appendTaskToDOM up above.
 const taskData = fetch("http://localhost:3001/tasks/")
   .then((response) => {
     if (response.ok) {
@@ -115,15 +151,12 @@ const taskData = fetch("http://localhost:3001/tasks/")
   .then((data) => {
     data.data.forEach((task) => {
       appendTaskToDOM(task);
-      console.log(task)
+     
     });
   })
-  .catch((error) =>{
+  .catch((error) => {
     console.error(error);
   });
-
-
-
 
 // close the task information pop up.
 const closeTaskInformation = document.querySelector(".close-task");
@@ -133,7 +166,6 @@ const taskInformation = document.querySelector(".task-expand");
 closeTaskInformation.addEventListener("click", function () {
   taskInformation.style.display = "none";
 });
-
 
 // Create an Edit and make symbol
 // Function to create an editing form with API integration
@@ -171,17 +203,16 @@ function createEditTaskPopup(taskId) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(task),
-        })
-          .then((response) => {
-            if (response.ok) {
-              // Close the pop-up/modal
-              popup.remove();
-              // Update the task card with the new information on the main task list/board
-              // (You'll need to implement this part)
-            } else {
-              // Handle API request error and display an error message to the user
-            }
-          });
+        }).then((response) => {
+          if (response.ok) {
+            // Close the pop-up/modal
+            popup.remove();
+            // Update the task card with the new information on the main task list/board
+            // (You'll need to implement this part)
+          } else {
+            // Handle API request error and display an error message to the user
+          }
+        });
       });
       form.appendChild(saveButton);
 
@@ -203,6 +234,3 @@ function createEditTaskPopup(taskId) {
       // Handle API request error and display an error message to the user
     });
 }
-
-
-

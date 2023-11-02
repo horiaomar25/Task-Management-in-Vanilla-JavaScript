@@ -70,7 +70,7 @@ export async function getWeeklyTaskById(id) {
   // UPDATE TASK
 
   //Define the SQL query for updating the specified task in the Tasks table
-export async function updateTaskById (id, updates){
+export async function updateTaskById (id, edit){
     const queryTask = `
     UPDATE Tasks
     SET task_name = COALESCE($1, task_name), 
@@ -80,14 +80,14 @@ export async function updateTaskById (id, updates){
      
     // Use the pool object to send the query to the database 
     const updateTask = await pool.query(queryTask, [
-        updates.task_name,
-        updates.task_description,
-        updates.task_type,
+        edit.task_name,
+        edit.task_description,
+        edit.task_type,
         id
     ]);
 
     //The rows property of the result object contains the updated record
-    return updates.rows[0] || null;
+    return edit.rows[0] || null;
 }
 
 
