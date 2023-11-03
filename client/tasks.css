@@ -295,8 +295,13 @@ input[type="checkbox"] + label {
   border: 2px solid black;
 }
 
-.task{
-  border: 2px solid black;
-  height: 30%;
+.new-style{
+  line-height: 35px;
+  margin-top: 10px;
+  height: 300px;
+  
+  
 
 }
+
+

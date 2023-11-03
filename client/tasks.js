@@ -1,7 +1,16 @@
 const addButton = document.querySelector("#create_task"); // Use '#' to select by ID
+// The popup when create task is clicked.
 const taskForm = document.getElementById("pop-up");
+// This will close the button.
 const closeButton = document.getElementById("close-button");
+// This is the add button to send it the backend
 const submitButton = document.getElementById("add-button");
+// This button will delete the task
+
+// This is the daily column
+const dailyTask = document.querySelector(".Daily-task");
+// This is the weekly column
+const weeklyTask = document.querySelector(".Weekly-task");
 
 // Click on create task and open the form.
 addButton.addEventListener("click", function () {
@@ -68,6 +77,7 @@ const formToServer = document
 
 // Fetch Data from the database/server
 function createTaskCard(task) {
+  // This creates a div with the class of .card to add styling. It adds the data to the card as they are created.
   const taskElement = document.createElement("div");
   taskElement.className = "card";
   taskElement.innerHTML = `
@@ -75,19 +85,21 @@ function createTaskCard(task) {
   <p>${task.task_description}</p>
   
   `;
-
+  //  Targets the expansion of the task card and allows you to display the task in a bigger card.
   const taskExpand = document.querySelector(".task-expand");
-  const taskInformation = document.getElementById('task-info')
+  const taskInformation = document.getElementById("task-info");
 
   taskElement.addEventListener("click", function (event) {
     taskExpand.style.display = "block";
-    
-    // Clone the task element to create a copy
+
+    // Clone the task element to create a copy of the task card with the data.
     const taskCopy = taskElement.cloneNode(true);
-    
+    // Give the copy a class so I can style it in the expansion.
+    taskCopy.className = "new-style";
+
     // Clear the taskInformation element before appending the copy
     taskInformation.innerHTML = "";
-    
+
     // Append the cloned task element to the taskInformation element
     taskInformation.appendChild(taskCopy);
   });
@@ -95,23 +107,30 @@ function createTaskCard(task) {
   return taskElement;
 }
 
-function createTaskCard2(task) {
-  const t = createTaskCard(task);
-  
-// trying to append the task to task expand.
-  const taskExpand = document.querySelector(".task-expand");
-  c
+async function deleteTask(taskId, taskElement) {
+  try {
+    const response = await fetch(`http://localhost:3001/tasks/${taskId}`, {
+      method: "DELETE",
+    });
 
-  taskExpand.addEventListener("click", function () {
-    taskExpand.style.display = "block";
-    if(t === task.task_name){
-    taskExpand.appendChild(task.task_name);
+    if (response.ok) {
+      // Remove the note from the list
+      // This is the daily column
+      const dailyTask = document.querySelector(".Daily-task");
+      // This is the weekly column
+      const weeklyTask = document.querySelector(".Weekly-task");
+      weeklyTask.removeChild(taskElement);
+      dailyTask.removeChild(taskElement);
+    } else {
+      console.error("Error deleting note:", await response.text());
     }
-  });
-
-  console.log(taskElement)
-  return taskExpand;
+  } catch (error) {
+    console.error("There was an error deleting the note:", error);
+  }
 }
+
+const deleteButton = document.getElementById("delete");
+deleteButton.addEventListener("click", deleteTask);
 
 // Adding the tasks to the Task page in the right columns. 'task' is the data Object holding
 function appendTaskToDOM(task) {
@@ -130,12 +149,12 @@ function appendTaskToDOM(task) {
     weeklyTask.appendChild(taskElement);
   }
 
-  
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Delete";
+  deleteButton.addEventListener("click", () => {
+    deleteNote(note.id, listItem);
+  });
 }
-
-//Plan
-// Need to append task to task expand 
-// 
 
 // This fetch request takes the data send to the database.
 // forEach loops through the data object and appends each task(array) to a task card with
@@ -151,7 +170,6 @@ const taskData = fetch("http://localhost:3001/tasks/")
   .then((data) => {
     data.data.forEach((task) => {
       appendTaskToDOM(task);
-     
     });
   })
   .catch((error) => {
@@ -169,68 +187,3 @@ closeTaskInformation.addEventListener("click", function () {
 
 // Create an Edit and make symbol
 // Function to create an editing form with API integration
-function createEditTaskPopup(taskId) {
-  // Make an API request to fetch task details by task ID
-  fetch(`/api/tasks/${taskId}`)
-    .then((response) => response.json())
-    .then((task) => {
-      const popup = document.createElement("div");
-      popup.className = "task-popup";
-
-      // Create an editing form
-      const form = document.createElement("form");
-
-      // Populate the form with task details fetched from the API
-      const taskNameInput = document.createElement("input");
-      taskNameInput.type = "text";
-      taskNameInput.value = task.name;
-      form.appendChild(taskNameInput);
-
-      // Add more input fields for other task details (e.g., description, due date, priority)
-
-      // Save button
-      const saveButton = document.createElement("button");
-      saveButton.textContent = "Save";
-      saveButton.addEventListener("click", () => {
-        // Update the task details with user changes
-        task.name = taskNameInput.value;
-        // Update other properties here
-
-        // Send an API request to update the task
-        fetch(`/api/tasks/${taskId}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(task),
-        }).then((response) => {
-          if (response.ok) {
-            // Close the pop-up/modal
-            popup.remove();
-            // Update the task card with the new information on the main task list/board
-            // (You'll need to implement this part)
-          } else {
-            // Handle API request error and display an error message to the user
-          }
-        });
-      });
-      form.appendChild(saveButton);
-
-      // Cancel button
-      const cancelButton = document.createElement("button");
-      cancelButton.textContent = "Cancel";
-      cancelButton.addEventListener("click", () => {
-        // Close the pop-up/modal without saving changes
-        popup.remove();
-      });
-      form.appendChild(cancelButton);
-
-      popup.appendChild(form);
-
-      // Display the editing form
-      document.body.appendChild(popup);
-    })
-    .catch((error) => {
-      // Handle API request error and display an error message to the user
-    });
-}
